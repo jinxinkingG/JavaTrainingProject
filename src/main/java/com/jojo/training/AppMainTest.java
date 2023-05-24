@@ -4,7 +4,7 @@ package com.jojo.training;
  * Hello world!
  *
  */
-public class App 
+public class AppMainTest 
 {
     public static void main( String[] args )
     {
