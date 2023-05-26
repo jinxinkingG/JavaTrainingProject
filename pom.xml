@@ -7,11 +7,17 @@
   <version>1.0-SNAPSHOT</version>
   <name>java-project</name>
   <url>http://maven.apache.org</url>
-  <profiles>
-    <profile>
-      <activation>
-        <jdk>11</jdk>
-      </activation>
-    </profile>
-  </profiles>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <!-- properties not actually available in the main POM, but used in the scenes -->
+  <properties> 
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties> 
 </project>
