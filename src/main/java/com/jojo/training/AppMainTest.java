@@ -52,6 +52,7 @@ public class AppMainTest {
         ListNode l2 = new ListNode(9, new ListNode(9, new ListNode(9)));
         ListNode addTwoNumbers = addTwoNumbers(l1, l2);
 
+        System.out.println("hello");
         log.log(Level.INFO, "Hello world! {0}", String.valueOf(lengthOfLongestSubstring));
         log.log(Level.INFO, "Hello world! {0}", addTwoNumbers.toString());
     }
@@ -72,15 +73,16 @@ class ListNode {
         this.val = val;
         this.next = next;
     }
+
     @Override
-    public String toString(){
-        StringBuilder str=new StringBuilder("[");
-        ListNode node = this.next;
-        while(node!=null){
-            str.append(this.next.val).append(",");
-            node=node.next;
+    public String toString() {
+        StringBuilder str = new StringBuilder("[");
+        ListNode node = this;
+        while (node != null) {
+            str.append(node.val).append(",");
+            node = node.next;
         }
-        str.substring(0, str.length());
+        str = new StringBuilder(str.substring(0, str.length() - 1));
         str.append("]");
         return str.toString();
     }
