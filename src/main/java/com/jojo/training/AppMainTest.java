@@ -8,11 +8,9 @@ import java.util.Map;
  *
  */
 public class AppMainTest {
-    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         return 0;
     }
-
     public static int lengthOfLongestSubstring(String s) {
         Map<Character, Integer> map = new HashMap<>();
         int maxLength = 0;
