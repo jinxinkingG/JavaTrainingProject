@@ -1,6 +1,5 @@
 package com.jojo.training;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +27,7 @@ public class AppMainTest {
                         end = j;
                         combine.add(j, nums2[i]);
                     } else {
-                        combine.add(j+1, nums2[i]);
+                        combine.add(j + 1, nums2[i]);
                         end = nums1.length;
                     }
                 }
