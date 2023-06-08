@@ -51,6 +51,7 @@ public class AppMainTest {
         ListNode l2 = new ListNode(9, new ListNode(9, new ListNode(9)));
         ListNode addTwoNumbers = addTwoNumbers(l1, l2);
 
+        System.out.println("hello");
         log.log(Level.INFO, "Hello world! {0}", String.valueOf(lengthOfLongestSubstring));
         log.log(Level.INFO, "Hello world! {0}", addTwoNumbers);
     }
