@@ -1,9 +1,13 @@
 package com.jojo.training;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * just for test!
@@ -12,10 +16,29 @@ import java.util.logging.Logger;
 public class AppMainTest {
 
     public static final Logger log = Logger.getLogger(AppMainTest.class.getName());
-    
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        return 0;
+
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        // int 装箱Integer
+        List<Integer> combine = Arrays.stream(nums1).boxed().collect(Collectors.toList());
+        if (nums1.length >= nums2.length) {
+            for (int i = nums2.length - 1; i > 0; i--) {
+                int end = nums1.length;
+                for (int j = 0; j < end; j++) {
+                    if (nums2[i] <= nums1[j]) {
+                        end = j;
+                        combine.add(j, nums2[i]);
+                    } else {
+                        combine.add(j+1, nums2[i]);
+                        end = nums1.length;
+                    }
+                }
+            }
+        }
+        if (combine.size() % 2 == 0)
+            return (combine.get(combine.size() / 2 - 1) + combine.get(combine.size() / 2)) / 2;
+        return combine.get((combine.size() - 1) / 2);
     }
+
     public static int lengthOfLongestSubstring(String s) {
         Map<Character, Integer> map = new HashMap<>();
         int maxLength = 0;
@@ -41,20 +64,24 @@ public class AppMainTest {
             }
             l1.next = l1.next == null ? new ListNode() : l1.next;
             l2.next = l2.next == null ? new ListNode() : l2.next;
-            l1.next.val+=sum/10;
+            l1.next.val += sum / 10;
             return new ListNode(sum % 10, addTwoNumbers(l1.next, l2.next));
         }
         return null;
     }
 
     public static void main(String[] args) {
-        int lengthOfLongestSubstring = lengthOfLongestSubstring("dvdf");
-        ListNode l1 = new ListNode(9, new ListNode(9));
-        ListNode l2 = new ListNode(9, new ListNode(9, new ListNode(9)));
-        ListNode addTwoNumbers = addTwoNumbers(l1, l2);
+        // int lengthOfLongestSubstring = lengthOfLongestSubstring("dvdf");
+        // ListNode l1 = new ListNode(9, new ListNode(9));
+        // ListNode l2 = new ListNode(9, new ListNode(9, new ListNode(9)));
+        // ListNode addTwoNumbers = addTwoNumbers(l1, l2);
 
-        log.log(Level.INFO, "Hello world! {0}", String.valueOf(lengthOfLongestSubstring));
-        log.log(Level.INFO, "Hello world! {0}", addTwoNumbers);
+        // log.log(Level.INFO, "Hello world! {0}",
+        // String.valueOf(lengthOfLongestSubstring));
+        // log.log(Level.INFO, "Hello world! {0}", addTwoNumbers);
+        int[] nums1 = { 1, 2 };
+        int[] nums2 = { 3, 4 };
+        log.log(Level.INFO, "result is {0}", findMedianSortedArrays(nums1, nums2));
     }
 }
 
