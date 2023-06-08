@@ -1,25 +1,28 @@
 package com.jojo.training;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * just for test!
  *
  */
 public class AppMainTest {
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        
+        return 0;
+    }
+
     public static int lengthOfLongestSubstring(String s) {
         Map<Character, Integer> map = new HashMap<>();
         int maxLength = 0;
-        int start = 0;
+        int start = -1;
         for (int i = 0; i < s.length(); i++) {
             Character ch = s.charAt(i);
             if (map.containsKey(ch)) {
-                start = Math.max(map.get(ch) + 1, start);
+                start = Math.max(map.get(ch), start);
             }
-            maxLength = Math.max(maxLength, i - start + 1);
+            maxLength = Math.max(maxLength, i - start);
             map.put(ch, i);
         }
         return maxLength;
