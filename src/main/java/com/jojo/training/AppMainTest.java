@@ -10,8 +10,9 @@ import java.util.logging.Logger;
  *
  */
 public class AppMainTest {
-    public static final Logger log = Logger.getLogger(AppMainTest.class.getName());
 
+    public static final Logger log = Logger.getLogger(AppMainTest.class.getName());
+    
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         return 0;
     }
@@ -40,6 +41,7 @@ public class AppMainTest {
             }
             l1.next = l1.next == null ? new ListNode() : l1.next;
             l2.next = l2.next == null ? new ListNode() : l2.next;
+            l1.next.val+=sum/10;
             return new ListNode(sum % 10, addTwoNumbers(l1.next, l2.next));
         }
         return null;
