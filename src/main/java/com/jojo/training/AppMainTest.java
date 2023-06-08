@@ -2,12 +2,16 @@ package com.jojo.training;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * just for test!
  *
  */
 public class AppMainTest {
+    public static final Logger log = Logger.getLogger(AppMainTest.class.getName());
+
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         return 0;
     }
@@ -32,18 +36,10 @@ public class AppMainTest {
             l2 = l2 == null ? new ListNode() : l2;
             int sum = l1.val + l2.val;
             if (l1.next == null && l2.next == null) {
-                if (sum < 10)
-                    return new ListNode(sum);
-                return new ListNode(sum % 10, new ListNode(sum / 10));
+                return new ListNode(sum % 10, sum > 9 ? new ListNode(sum / 10) : null);
             }
-            boolean flag = false;
-            if (l1.next != null) {
-                l1.next.val += sum / 10;
-                flag = true;
-            }
-            if (l2.next != null && !flag) {
-                l2.next.val += sum / 10;
-            }
+            l1.next = l1.next == null ? new ListNode() : l1.next;
+            l2.next = l2.next == null ? new ListNode() : l2.next;
             return new ListNode(sum % 10, addTwoNumbers(l1.next, l2.next));
         }
         return null;
@@ -56,7 +52,8 @@ public class AppMainTest {
         ListNode l2 = new ListNode(9, new ListNode(9, new ListNode(9)));
         ListNode addTwoNumbers = addTwoNumbers(l1, l2);
 
-        System.out.println("Hello world! " + lengthOfLongestSubstring);
+        log.log(Level.INFO, "Hello world! {0}", String.valueOf(lengthOfLongestSubstring));
+        log.log(Level.INFO, "Hello world! {0}", addTwoNumbers.toString());
     }
 }
 
@@ -74,5 +71,17 @@ class ListNode {
     ListNode(int val, ListNode next) {
         this.val = val;
         this.next = next;
+    }
+    @Override
+    public String toString(){
+        StringBuilder str=new StringBuilder("[");
+        ListNode node = this.next;
+        while(node!=null){
+            str.append(this.next.val).append(",");
+            node=node.next;
+        }
+        str.substring(0, str.length());
+        str.append("]");
+        return str.toString();
     }
 }
