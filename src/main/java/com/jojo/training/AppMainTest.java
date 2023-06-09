@@ -16,25 +16,52 @@ public class AppMainTest {
 
     public static final Logger log = Logger.getLogger(AppMainTest.class.getName());
 
+    public static double findMedianSortedArraysPlus(int[] nums1, int[] nums2) {
+        int sum = nums1.length + nums2.length;
+        int k = sum / 2;// 中位数的位置
+        int nums1index = k / 2;
+        int nums2index = k / 2;
+        while(k==0){
+        if (nums1[nums1index] == nums2[nums2index]) {
+            return nums1[nums1index];
+        }
+        if(nums1[nums1index]>nums2[nums2index]){
+            k-=nums2index+1;
+            nums2index++;
+        }
+        if(nums1[nums1index]<nums2[nums2index]){
+            k-=nums1index;
+            nums1index++;
+        }
+        }
+        return 0;
+    }
+
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        if (nums1.length == 0) {
+            return (nums2.length % 2) == 0 ? (nums2[nums2.length / 2] + nums2[nums2.length / 2 - 1]) / 2.0
+                    : nums2[(nums2.length + 1) / 2 - 1];
+        }
+        if (nums2.length == 0) {
+            return (nums1.length % 2) == 0 ? (nums1[nums1.length / 2] + nums1[nums1.length / 2 - 1]) / 2.0
+                    : nums1[(nums1.length + 1) / 2 - 1];
+        }
         // int 装箱Integer
         List<Integer> combine = Arrays.stream(nums1).boxed().collect(Collectors.toList());
-        if (nums1.length >= nums2.length) {
-            for (int i = nums2.length - 1; i > 0; i--) {
-                int end = nums1.length;
-                for (int j = 0; j < end; j++) {
-                    if (nums2[i] <= nums1[j]) {
-                        end = j;
-                        combine.add(j, nums2[i]);
-                    } else {
-                        combine.add(j + 1, nums2[i]);
-                        end = nums1.length;
-                    }
+        for (int i = nums2.length - 1; i >= 0; i--) {
+            int end = combine.size();
+            for (int j = 0; j < end; j++) {
+                if (nums2[i] <= combine.get(j)) {
+                    end = j;
+                    combine.add(j, nums2[i]);
+                } else if (nums2[i] > combine.get(j) && j == end - 1) {
+                    combine.add(j + 1, nums2[i]);
+                    break;
                 }
             }
         }
         if (combine.size() % 2 == 0)
-            return (combine.get(combine.size() / 2 - 1) + combine.get(combine.size() / 2)) / 2;
+            return (combine.get(combine.size() / 2 - 1) + combine.get(combine.size() / 2)) / 2.0;
         return combine.get((combine.size() - 1) / 2);
     }
 
@@ -70,17 +97,16 @@ public class AppMainTest {
     }
 
     public static void main(String[] args) {
-        // int lengthOfLongestSubstring = lengthOfLongestSubstring("dvdf");
-        // ListNode l1 = new ListNode(9, new ListNode(9));
-        // ListNode l2 = new ListNode(9, new ListNode(9, new ListNode(9)));
-        // ListNode addTwoNumbers = addTwoNumbers(l1, l2);
+        int lengthOfLongestSubstring = lengthOfLongestSubstring("dvdf");
+        ListNode l1 = new ListNode(9, new ListNode(9));
+        ListNode l2 = new ListNode(9, new ListNode(9, new ListNode(9)));
+        ListNode addTwoNumbers = addTwoNumbers(l1, l2);
 
-        // log.log(Level.INFO, "Hello world! {0}",
-        // String.valueOf(lengthOfLongestSubstring));
-        // log.log(Level.INFO, "Hello world! {0}", addTwoNumbers);
-        int[] nums1 = { 1, 2 };
-        int[] nums2 = { 3, 4 };
-        log.log(Level.INFO, "result is {0}", findMedianSortedArrays(nums1, nums2));
+        log.log(Level.INFO, "length of Longest substring: {0}", lengthOfLongestSubstring);
+        log.log(Level.INFO, "sum of two numbers {0}", addTwoNumbers);
+        int[] nums1 = {1,3,5};
+        int[] nums2 = {1,3,4};
+        log.log(Level.INFO, "median number is {0}", findMedianSortedArraysPlus(nums1, nums2));
     }
 }
 
