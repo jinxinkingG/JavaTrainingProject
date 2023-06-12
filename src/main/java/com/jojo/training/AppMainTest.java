@@ -17,24 +17,8 @@ public class AppMainTest {
     public static final Logger log = Logger.getLogger(AppMainTest.class.getName());
 
     public static double findMedianSortedArraysPlus(int[] nums1, int[] nums2) {
-        int sum = nums1.length + nums2.length;
-        int k = sum / 2;// 中位数的位置
-        int nums1index = k / 2;
-        int nums2index = k / 2;
-        while(k==0){
-        if (nums1[nums1index] == nums2[nums2index]) {
-            return nums1[nums1index];
-        }
-        if(nums1[nums1index]>nums2[nums2index]){
-            k-=nums2index+1;
-            nums2index++;
-        }
-        if(nums1[nums1index]<nums2[nums2index]){
-            k-=nums1index;
-            nums1index++;
-        }
-        }
-        return 0;
+        // TODO 找中位数算法
+        return nums1.length+nums2.length;
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -104,7 +88,7 @@ public class AppMainTest {
 
         log.log(Level.INFO, "length of Longest substring: {0}", lengthOfLongestSubstring);
         log.log(Level.INFO, "sum of two numbers {0}", addTwoNumbers);
-        int[] nums1 = {1,3,5};
+        int[] nums1 = {1,2,5};
         int[] nums2 = {1,3,4};
         log.log(Level.INFO, "median number is {0}", findMedianSortedArraysPlus(nums1, nums2));
     }
