@@ -14,6 +14,11 @@
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+	<groupId>org.projectlombok</groupId>
+	<artifactId>lombok</artifactId>
+	<version>1.18.28</version>
+    </dependency>
   </dependencies>
   <!-- properties not actually available in the main POM, but used in the scenes -->
   <properties> 
