@@ -8,8 +8,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-/** just for test! */
+/**
+ * just for test!
+ *
+ * */
+
 public class AppMainTest {
+
+
 
 	public static final Logger log = Logger.getLogger(AppMainTest.class.getName());
 
