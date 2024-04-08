@@ -54,6 +54,11 @@ public class AppMainTest {
     static class DyeingRequest{
         String[] queryDate;
 
+        String no;
+
+        public DyeingRequest(String no){
+            this.no = no;
+        }
         public DyeingRequest(String[] queryDate){
             this.queryDate=queryDate;
         }
@@ -62,60 +67,84 @@ public class AppMainTest {
         }
     }
 
-    public static void main(String[] args) throws ParseException {
-        Map<String,DyeingRequest> testMap = new LinkedHashMap<>();
-        testMap.put("1",new DyeingRequest(new String[]{"1","2"}));
-        testMap.put("2",new DyeingRequest(new String[]{"3","4"}));
-        testMap.put("1",new DyeingRequest(new String[]{"5","6"}));
-
-        String testString = "[\"test\"]";
-        System.out.println(testString.replaceAll("\\[|\\]|\"", ""));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date parse = sdf.parse("2021-12-29 00:00:00");
-        DyeingRequest queryDate = new DyeingRequest(new String[]{});
-        String[] queryDates = new String[2];
-        Calendar instance = Calendar.getInstance();
-        instance.setTime(parse);
-        int day = instance.get(Calendar.DAY_OF_MONTH);
-        int year = instance.get(Calendar.YEAR);
-        int month = instance.get(Calendar.MONTH) + 1;
-        instance.add(Calendar.MONTH, -1);
-        int preMonth = instance.get(Calendar.MONTH) + 1;
-        instance.add(Calendar.MONTH, -1);
-        int prepreMonth = instance.get(Calendar.MONTH) + 1;
-        int prepreYear = instance.get(Calendar.YEAR);
-        int preYear = instance.get(Calendar.YEAR);
-        if (month == 12) {
-            if (day < 29) {
-                queryDates[0] = prepreYear + "-" + prepreMonth + "-26 00:00:00.000";
-                queryDates[1] = preYear + "-" + preMonth + "-25 23:59:59.998";
-                queryDate.setQueryDate(queryDates);
-            } else {
-                queryDates[0] = preYear + "-" + preMonth + "-26 00:00:00.000";
-                queryDates[1] = year + "-" + month + "-29 23:59:59.998";
-                queryDate.setQueryDate(queryDates);
-            }
-        } else if (month == 1) {
-            if (day < 25) {
-                queryDates[0] = prepreYear + "-" + prepreMonth + "-26 00:00:00.000";
-                queryDates[1] = preYear + "-" + preMonth + "-29 23:59:59.998";
-                queryDate.setQueryDate(queryDates);
-            } else {
-                queryDates[0] = preYear + "-" + preMonth + "-30 00:00:00.000";
-                queryDates[1] = year + "-" + month + "-25 23:59:59.998";
-                queryDate.setQueryDate(queryDates);
-            }
-        } else if (day < 25) {
-            queryDates[0] = prepreYear + "-" + prepreMonth + "-26 00:00:00.000";
-            queryDates[1] = preYear + "-" + preMonth + "-25 23:59:59.998";
-            queryDate.setQueryDate(queryDates);
-        } else {
-            queryDates[0] = preYear + "-" + preMonth + "-26 00:00:00.000";
-            queryDates[1] = year + "-" + month + "-25 23:59:59.998";
-            queryDate.setQueryDate(queryDates);
-        }
-        String test = "1*2*3";
-        System.out.println(test.split("[*]").length);
+    public static void main(String[] args) {//throws ParseException {
+        TreeData<ListNode> treeData = new TreeData<>("12","test");
+        treeData.getChildren().add(new ListNode());
+//        Date compareDate = new Date(1714096178000L);
+//        System.out.println(new Date().compareTo(compareDate));
+//        try {
+//            ContractPayStatusEnum.getEnumNameById("123");
+//        }catch (Exception e){
+//            System.out.println(e.getLocalizedMessage());
+//            System.out.println(e.getMessage());
+//        }
+//        for (ContractPayStatusEnum value : ContractPayStatusEnum.values()) {
+//            System.out.println(value.ordinal());
+//        }
+//        List<DyeingRequest> l = new ArrayList<>();
+//        l.add(new DyeingRequest("HK20230002"));
+//        l.add(new DyeingRequest("HK20230005"));
+//        l.add(new DyeingRequest("HK20230003"));
+//        l.add(new DyeingRequest("HK20230004"));
+//        l.add(new DyeingRequest("HK20230001"));
+//        l.sort(Comparator.comparing(x->x.no));
+//        Map<String,DyeingRequest> testMap = new LinkedHashMap<>();
+//        testMap.put("1",new DyeingRequest(new String[]{"1","2"}));
+//        testMap.put("2",new DyeingRequest(new String[]{"3","4"}));
+//        testMap.put("1",new DyeingRequest(new String[]{"5","6"}));
+//        List<String> testList = new ArrayList<>();
+//        testList.add("1");
+//        testList.add("2");
+//        testList.add("3");
+////        String testString = "[\"test\",\"test1\",\"test2\"]";
+//        String testString = testList.toString();
+//        System.out.println(testString.replaceAll("[\\[\\]\"]",""));
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date parse = sdf.parse("2021-12-29 00:00:00");
+//        DyeingRequest queryDate = new DyeingRequest(new String[]{});
+//        String[] queryDates = new String[2];
+//        Calendar instance = Calendar.getInstance();
+//        instance.setTime(parse);
+//        int day = instance.get(Calendar.DAY_OF_MONTH);
+//        int year = instance.get(Calendar.YEAR);
+//        int month = instance.get(Calendar.MONTH) + 1;
+//        instance.add(Calendar.MONTH, -1);
+//        int preMonth = instance.get(Calendar.MONTH) + 1;
+//        instance.add(Calendar.MONTH, -1);
+//        int prepreMonth = instance.get(Calendar.MONTH) + 1;
+//        int prepreYear = instance.get(Calendar.YEAR);
+//        int preYear = instance.get(Calendar.YEAR);
+//        if (month == 12) {
+//            if (day < 29) {
+//                queryDates[0] = prepreYear + "-" + prepreMonth + "-26 00:00:00.000";
+//                queryDates[1] = preYear + "-" + preMonth + "-25 23:59:59.998";
+//                queryDate.setQueryDate(queryDates);
+//            } else {
+//                queryDates[0] = preYear + "-" + preMonth + "-26 00:00:00.000";
+//                queryDates[1] = year + "-" + month + "-29 23:59:59.998";
+//                queryDate.setQueryDate(queryDates);
+//            }
+//        } else if (month == 1) {
+//            if (day < 25) {
+//                queryDates[0] = prepreYear + "-" + prepreMonth + "-26 00:00:00.000";
+//                queryDates[1] = preYear + "-" + preMonth + "-29 23:59:59.998";
+//                queryDate.setQueryDate(queryDates);
+//            } else {
+//                queryDates[0] = preYear + "-" + preMonth + "-30 00:00:00.000";
+//                queryDates[1] = year + "-" + month + "-25 23:59:59.998";
+//                queryDate.setQueryDate(queryDates);
+//            }
+//        } else if (day < 25) {
+//            queryDates[0] = prepreYear + "-" + prepreMonth + "-26 00:00:00.000";
+//            queryDates[1] = preYear + "-" + preMonth + "-25 23:59:59.998";
+//            queryDate.setQueryDate(queryDates);
+//        } else {
+//            queryDates[0] = preYear + "-" + preMonth + "-26 00:00:00.000";
+//            queryDates[1] = year + "-" + month + "-25 23:59:59.998";
+//            queryDate.setQueryDate(queryDates);
+//        }
+//        String test = "1*2*3";
+//        System.out.println(test.split("[*]").length);
 //        Set<String> testSet = new HashSet<>();
 //        Map<String,String> testmap = new HashMap<>();
 //        System.out.println(testmap.get("tst"));
